@@ -20,7 +20,7 @@ async def upload_file(file: UploadFile = File(...)):
 
     chunks = chunk_text(text) # return as plain text chunks
 
-    docs = [Document(page_content=chunk) for chunk in chunks] # convert to Langchain Document format
+    docs = [Document(page_content=chunk, metadata={"filename": file.filename}) for chunk in chunks] # convert to Langchain Document format and store metadata as filename
 
     vector_store = vector_store_define()
 
