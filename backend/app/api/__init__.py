@@ -1,6 +1,7 @@
 from fastapi import APIRouter
-from app.api.routes import test, files
+from app.api.routes import test, files, quiz
 
 router = APIRouter()
 router.include_router(test.router, prefix="/test")
 router.include_router(files.router, prefix="/files")
+router.include_router(quiz.router, prefix="/quiz")
