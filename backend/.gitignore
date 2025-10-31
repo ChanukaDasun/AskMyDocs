@@ -7,3 +7,4 @@ app/api/__pycache__/
 app/test/__pycache__/
 app/services/__pycache__/
 app/data/models/__pycache__/
+app/data/vectors
