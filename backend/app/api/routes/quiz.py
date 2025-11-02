@@ -20,4 +20,4 @@ async def get_quiz(quiz_request: QuizRequest):
 
     quiz = generate_quiz(chunks, no_of_questions=quiz_request.no_of_questions)
 
-    return {"message": f"This is a quiz endpoint with {quiz_request.no_of_questions} \n questions: {quiz}"}
+    return quiz

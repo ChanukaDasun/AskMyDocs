@@ -20,6 +20,8 @@ export default function QuizOptions() {
       // assume backend knows which file is current
       const data = await generateQuiz(numQuestions, fileName);
 
+      console.log(data, data.type)
+
       message.success("Quiz generated successfully!");
       setQuiz(data);
     } catch (error: any) {
