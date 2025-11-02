@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import FileUpload from "./components/FileUpload";
 import ActionSelect from "./pages/ActionSelect";
 import QuizOptions from "./pages/QuizOptions";
+import QuizAttempt from "./pages/QuizAttempt";
+import QuizResults from "./pages/QuizResults";
 
 export default function App() {
   return (
@@ -12,6 +14,8 @@ export default function App() {
         <Route path="/upload" element={<FileUpload />} />
         <Route path="/choose-action" element={<ActionSelect />} />
         <Route path="/quiz-options" element={<QuizOptions />} />
+        <Route path="/quiz-attempt" element={<QuizAttempt />} />
+        <Route path="/quiz-results" element={<QuizResults />} />
       </Routes>
     </BrowserRouter>
   );

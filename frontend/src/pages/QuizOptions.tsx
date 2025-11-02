@@ -1,13 +1,14 @@
 import { useState } from "react";
 import { Button, Typography, Space, message, Spin, Card } from "antd";
 import { generateQuiz } from "../api/quiz";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const { Title, Text } = Typography;
 
 export default function QuizOptions() {
+  
+  const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
-  const [quiz, setQuiz] = useState<any>(null);
 
   const queryParams = new URLSearchParams(useLocation().search);
   const fileName = queryParams.get("fileName") || "";
@@ -17,13 +18,10 @@ export default function QuizOptions() {
     message.info(`Generating ${numQuestions} questions...`);
 
     try {
-      // assume backend knows which file is current
       const data = await generateQuiz(numQuestions, fileName);
-
-      console.log(data, data.type)
-
       message.success("Quiz generated successfully!");
-      setQuiz(data);
+
+      navigate(`/quiz-attempt?fileName=${fileName}`, { state: { quiz: data } });
     } catch (error: any) {
       console.error(error);
       message.error("Failed to generate quiz. Please try again.");
@@ -70,27 +68,6 @@ export default function QuizOptions() {
           <div>
             <Spin size="large" />
             <p>Generating your quiz, please wait...</p>
-          </div>
-        )}
-
-        {quiz && (
-          <div style={{ marginTop: 30, textAlign: "left", width: "60%", margin: "auto" }}>
-            <Title level={3}>Generated Quiz</Title>
-            {quiz.map((q: any, index: number) => (
-              <Card
-                key={index}
-                style={{ marginBottom: 15, borderRadius: 12 }}
-                title={`Question ${index + 1}`}
-              >
-                <p><strong>{q.question}</strong></p>
-                <ul>
-                  {q.answers.map((ans: string, i: number) => (
-                    <li key={i}>{ans}</li>
-                  ))}
-                </ul>
-                <p><b>Correct Answer:</b> {q.correct_answer}</p>
-              </Card>
-            ))}
           </div>
         )}
       </div>
