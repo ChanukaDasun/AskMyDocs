@@ -1,7 +1,9 @@
 from fastapi import APIRouter
-from app.config import vector_store_define
+from app.config import vector_store_define, get_chat_model
 from app.data.models.Quiz import QuizRequest
+from app.data.models.Answer import AnswerRequest
 from app.services.quizGenerate import generate_quiz
+from app.services.answering import generate_answer
 
 router = APIRouter()
 
@@ -21,3 +23,9 @@ async def get_quiz(quiz_request: QuizRequest):
     quiz = generate_quiz(chunks, no_of_questions=quiz_request.no_of_questions)
 
     return quiz
+
+@router.post("/askQuestions")
+async def ask_question(answer_request: AnswerRequest):
+
+    response = generate_answer(answer_request.question, answer_request.file_name)
+    return response

@@ -5,6 +5,7 @@ import ActionSelect from "./pages/ActionSelect";
 import QuizOptions from "./pages/QuizOptions";
 import QuizAttempt from "./pages/QuizAttempt";
 import QuizResults from "./pages/QuizResults";
+import AskQuestions from "./pages/AskQuestions";
 
 export default function App() {
   return (
@@ -16,6 +17,7 @@ export default function App() {
         <Route path="/quiz-options" element={<QuizOptions />} />
         <Route path="/quiz-attempt" element={<QuizAttempt />} />
         <Route path="/quiz-results" element={<QuizResults />} />
+        <Route path="/ask-questions" element={<AskQuestions />} />
       </Routes>
     </BrowserRouter>
   );

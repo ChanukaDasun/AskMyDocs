@@ -1,4 +1,4 @@
-import { Button, Typography, Space, message } from "antd";
+import { Button, Typography, Space } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useLocation } from "react-router-dom";
 
@@ -13,6 +13,15 @@ export default function ActionSelect() {
 
   return (
     <div style={{ textAlign: "center", marginTop: 80 }}>
+      <div style={{ position: "absolute", top: 10, left: 10 }}>
+        <Button
+          type="default"
+          onClick={() => navigate(`/`)}
+          style={{ borderRadius: 8 }}
+        >
+          ← Back to Main Menu
+        </Button>
+      </div>
       <Title level={2}>What would you like to do?</Title>
       <Text type="secondary">Choose one of the actions below</Text>
 
@@ -28,7 +37,7 @@ export default function ActionSelect() {
 
           <Button
             size="large"
-            onClick={() => message.info("Ask Question feature coming soon!")}
+            onClick={() => navigate(`/ask-questions?fileName=${fileName}`)}
           >
             Ask Question
           </Button>

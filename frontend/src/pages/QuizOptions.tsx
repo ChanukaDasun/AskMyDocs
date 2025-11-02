@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Button, Typography, Space, message, Spin, Card } from "antd";
+import { Button, Typography, Space, message, Spin } from "antd";
 import { generateQuiz } from "../api/quiz";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -32,6 +32,15 @@ export default function QuizOptions() {
 
   return (
     <div style={{ textAlign: "center", marginTop: 80 }}>
+      <div style={{ position: "absolute", top: 10, left: 10 }}>
+        <Button
+          type="default"
+          onClick={() => navigate(`/choose-action?fileName=${fileName}`)}
+          style={{ borderRadius: 8 }}
+        >
+          ← Back to Actions
+        </Button>
+      </div>
       <Title level={2}>Generate Quiz</Title>
       <Text type="secondary">
         Choose how many questions you want to generate:
